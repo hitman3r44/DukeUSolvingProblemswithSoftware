@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Week2Assignent1;
+package Week2Exercise1;
 import edu.duke.*;
 import java.io.*;
 
