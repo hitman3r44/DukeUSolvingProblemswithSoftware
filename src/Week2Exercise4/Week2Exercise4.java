@@ -9,12 +9,17 @@ import edu.duke.StorageResource;
  */
 public class Week2Exercise4 {
 
-	public static double cgRatio() {
+	public static float cgRatio(String dna) {
 		
-		//TODO 
-		double ratio = 4.5;
+		int countCG = 0;
+	
+		for (int i=0; i<dna.length(); i++) {
+			if (dna.toLowerCase().charAt(i) == 'c' || dna.toLowerCase().charAt(i) == 'g') {
+				countCG++;
+			}
+		}
 		
-		return ratio;
+		return ((float)countCG/dna.length());
 	}
 	
 	public static int findStopIndex(String dna, int index) {
@@ -90,6 +95,32 @@ public class Week2Exercise4 {
 		return codonStorage;
 	}
 	
+	public static void printGenes(StorageResource sr) {
+		
+		int count60=0;
+		int countCG=0;
+		int length=0;
+		
+		for (String sequence : sr.data()) {
+			if (sequence.length() > length) {
+				length = sequence.length();
+			}
+			if (sequence.length() > 60) {
+				//System.out.println("Sequence with length greater than 60 found: " + sequence);
+				count60++;
+			}
+			if (cgRatio(sequence) > 0.35) {
+				//System.out.println("CG Ratio greater than 0.35 found: " + sequence);
+				countCG++;
+			}
+		}
+		
+		System.out.println("Longest sequence: " + length);
+		System.out.println("Total sequences with length greater than 60: " + count60);
+		System.out.println("Total sequences with CG ratio greater than 3.5: " + countCG);
+		
+		return;
+	}
 	
 	public static void testStorageFinder(String filePath) {
 		
@@ -99,8 +130,10 @@ public class Week2Exercise4 {
 		
 		StorageResource dnaStorage = storeAll(dna);
 			
-		System.out.println(dnaStorage.size());
+		System.out.println("Total sequences: " + dnaStorage.size());
 	
+		printGenes(dnaStorage);
+		
 		return;
 	}
 	
