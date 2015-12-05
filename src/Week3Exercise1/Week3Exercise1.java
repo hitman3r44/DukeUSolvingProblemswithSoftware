@@ -4,27 +4,29 @@
 package Week3Exercise1;
 
 import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
 import edu.duke.FileResource;
 
 /**
- * @author Andy
+ * @author Andy McCall
  *
  */
 public class Week3Exercise1 {
 
 	public static void tester(){
 		
-		FileResource fr = new FileResource();
+		FileResource fr = new FileResource("C:\\Users\\Andy\\DukeUSolvingProblemswithSoftware\\DukeUSolvingProblemswithSoftware\\src\\Week3Exercise1\\exports_small.csv");
 		CSVParser parser = fr.getCSVParser();
 		
 		System.out.println(countryInfo(parser,"Germany"));
-		fr.getCSVParser();
+		parser = fr.getCSVParser();
 		
 		listExportersTwoProducts(parser, "gold", "diamonds");
-		fr.getCSVParser();
+		parser = fr.getCSVParser();
 
 		System.out.println(numberOfExporters(parser,"gold"));
-		fr.getCSVParser();
+		parser = fr.getCSVParser();
 		
 		bigExporters(parser,"$999,999,999");	
 		
@@ -37,7 +39,7 @@ public class Week3Exercise1 {
 	 * 
 	 * @param parser
 	 * @param country
- 	 * @return
+ 	 * @return String 
 	 * 
 	 * This method returns a string of information about the country or
 	 * returns “NOT FOUND” if there is no information about the country.
@@ -52,6 +54,20 @@ public class Week3Exercise1 {
 	public static String countryInfo(CSVParser parser, String country) {
 		
 		String countryInfo="";
+		
+		for (CSVRecord record : parser) {
+			if (record.get("Country").contains(country)) {
+				countryInfo = record.get("Country");
+				countryInfo += ": ";
+				countryInfo += record.get("Exports");
+				countryInfo += ": ";
+				countryInfo += record.get("Value (dollars)");
+			}
+		}
+		
+		if (countryInfo.length()<1) {
+			return "NOT FOUND";
+		}
 		
 		return countryInfo;
 	}
@@ -73,8 +89,16 @@ public class Week3Exercise1 {
 	 */
 	public static void listExportersTwoProducts(CSVParser parser,
 												String exportItem1,
-												String exportItem2) {
-						
+												String exportItem2) {			
+	
+		for (CSVRecord record : parser) {
+			if (record.get("Exports").toLowerCase().indexOf(exportItem1.toLowerCase()) > -1) {
+				if (record.get("Exports").toLowerCase().indexOf(exportItem2.toLowerCase()) > -1) {
+					System.out.println(record.get("Country"));
+				}
+			}
+		}
+		
 		return;
 	}
 	
@@ -92,6 +116,12 @@ public class Week3Exercise1 {
 	public static int numberOfExporters(CSVParser parser, String exportItem) {
 		
 		int count=0;
+		
+		for (CSVRecord record : parser) {
+			if (record.get("Exports").toLowerCase().indexOf(exportItem.toLowerCase()) > -1) {
+				count++;
+			}
+		}
 		
 		return count;
 		
@@ -122,6 +152,17 @@ public class Week3Exercise1 {
 	 */
 	public static void bigExporters (CSVParser parser, String amount) {
 
+		String bigExportersInfo="";
+		
+		for (CSVRecord record : parser) {
+			if (record.get("Value (dollars)").length() > amount.length()) {
+				bigExportersInfo = record.get("Country");
+				bigExportersInfo += " ";
+				bigExportersInfo += record.get("Value (dollars)");
+				System.out.println(bigExportersInfo);
+			}
+		}
+		
 		return;
 	}
 	
