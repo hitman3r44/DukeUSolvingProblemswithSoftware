@@ -58,7 +58,7 @@ public class Week2Exercise4 {
 		}
 
 		if (smallestGene != Integer.MAX_VALUE) {
-			return index + smallestGene - 3;
+			return index + smallestGene -3;
 		}
 	    
 	    return -1;
@@ -86,7 +86,7 @@ public class Week2Exercise4 {
 				if ((stopCodon == -1) && (startCodon < dna.length())) {
 					startCodon = startCodon+3;
 				} else {
-					startCodon = stopCodon;
+					startCodon = stopCodon+3;
 				}
 			}
 		
@@ -100,8 +100,11 @@ public class Week2Exercise4 {
 		int count60=0;
 		int countCG=0;
 		int length=0;
+		int count=0;
 		
 		for (String sequence : sr.data()) {
+			count++;
+			System.out.println(count + ": " + sequence);
 			if (sequence.length() > length) {
 				length = sequence.length();
 			}
@@ -127,6 +130,7 @@ public class Week2Exercise4 {
 		FileResource file = new FileResource(filePath);
 		
 		String dna = file.asString();
+		System.out.println(dna.length());
 		
 		StorageResource dnaStorage = storeAll(dna);
 			
