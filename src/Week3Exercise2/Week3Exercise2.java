@@ -20,8 +20,15 @@ public class Week3Exercise2 {
 	 * such as the time of its occurrence.
 	 * 
 	 */
-	public void testColdestHourInFile() {
+	public static void testColdestHourInFile() {
+	
+		FileResource file = new FileResource("C:\\Users\\Andy\\DukeUSolvingProblemswithSoftware\\DukeUSolvingProblemswithSoftware\\src\\Week3Exercise2\\nc_weather\\2015\\weather-2015-01-04.csv");
+		CSVParser parser = file.getCSVParser();
 		
+		CSVRecord record = coldestHourInFile(parser);
+		
+		System.out.println(record.toString());
+				
 	}
 	
 	/**
@@ -40,19 +47,97 @@ public class Week3Exercise2 {
 	 * when calculating the lowest temperature.
 	 * 
 	 */
-	public CSVRecord coldestHourInFile(CSVParser parser) {
+	public static CSVRecord coldestHourInFile(CSVParser parser) {
 		
-		CSVRecord record = null;
+		CSVRecord coldestRecord = null;
+		
+		for (CSVRecord record : parser) {
+			
+			double tempColdest=0;
+			
+			if (coldestRecord == null) {
+				coldestRecord = record;
+			}
+			
+			tempColdest = Double.parseDouble(record.get("TemperatureF"));
+			
+			if (tempColdest != -9999) {
+				if (tempColdest < Double.parseDouble(coldestRecord.get("TemperatureF"))) {
+					coldestRecord = record;
+				}
+			}
+		}
+		
+		return coldestRecord;
+	}
+	
+	/**
+	 * 
+	 * Method to test fileWithColdestTemperature and print
+	 * out information about the file.
+	 * 
+	 */
+	public static void testFileWithColdestTemperature() {
+		
+		return;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * 
+	 * This method should return a string that is the name of
+	 * the file from selected files that has the coldest
+	 * temperature.
+	 * 
+	 */
+	public static String fileWithColdestTemperature() {
+	
+		String filename="";
+		
+		return filename;
+		
+	}
+	
+	/**
+	 * 
+	 * Method to test lowestHumidityInFile and print
+	 * out information about the file.
+	 * 
+	 */
+	public static void testLowestHumidityInFile() {
+		
+		return;
+	}
+	
+	/**
+	 * 
+	 * @param parser
+	 * @return
+	 * 
+	 * This method returns the CSVRecord that has the lowest
+	 * humidity. If there is a tie, then return the first
+	 * such record that was found.
+	 * 
+	 */
+	
+	public static CSVRecord lowestHumidityInFile(CSVParser parser) {
+		
+		CSVRecord record=null;
 		
 		return record;
-		
 	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		testColdestHourInFile();
+		
+		testFileWithColdestTemperature();
+		
+		testLowestHumidityInFile();
 
 	}
 
