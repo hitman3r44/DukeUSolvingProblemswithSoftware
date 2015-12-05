@@ -128,8 +128,19 @@ public class Week2Exercise4 {
 	public static void testStorageFinder(String filePath) {
 		
 		FileResource file = new FileResource(filePath);
+		int countCTG=0;
 		
 		String dna = file.asString();
+		
+		for (int i = 0; i <= dna.length(); i++) {
+			if (i + 3 <= dna.length()) {
+				if (dna.toLowerCase().substring(i, i + 3).contains("ctg")) {
+					countCTG++;
+				}
+			}
+		}
+
+		
 		System.out.println(dna.length());
 		
 		StorageResource dnaStorage = storeAll(dna);
@@ -137,6 +148,7 @@ public class Week2Exercise4 {
 		System.out.println("Total sequences: " + dnaStorage.size());
 	
 		printGenes(dnaStorage);
+		System.out.println("CTG Count: " + countCTG);
 		
 		return;
 	}

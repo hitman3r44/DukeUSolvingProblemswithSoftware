@@ -59,7 +59,7 @@ public class Week2Exercise5 {
 		int dot=0;
 		int endsCom=0;
 	
-		urls = findURLs("http://www.dukelearntoprogram.com/course2/data/manylinks.html");
+		urls = findURLs("http://www.dukelearntoprogram.com/course2/data/newyorktimes.html");
 		
 		
 		for (String url : urls.data()) {
