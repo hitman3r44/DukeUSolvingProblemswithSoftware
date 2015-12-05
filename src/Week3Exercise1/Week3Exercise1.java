@@ -5,7 +5,6 @@ package Week3Exercise1;
 
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-
 import edu.duke.FileResource;
 
 /**
@@ -16,19 +15,19 @@ public class Week3Exercise1 {
 
 	public static void tester(){
 		
-		FileResource fr = new FileResource("C:\\Users\\Andy\\DukeUSolvingProblemswithSoftware\\DukeUSolvingProblemswithSoftware\\src\\Week3Exercise1\\exports_small.csv");
+		FileResource fr = new FileResource("C:\\Users\\Andy\\DukeUSolvingProblemswithSoftware\\DukeUSolvingProblemswithSoftware\\src\\Week3Exercise1\\exportdata.csv");
 		CSVParser parser = fr.getCSVParser();
 		
-		System.out.println(countryInfo(parser,"Germany"));
+		System.out.println(countryInfo(parser,"Nauru"));
 		parser = fr.getCSVParser();
 		
 		listExportersTwoProducts(parser, "gold", "diamonds");
 		parser = fr.getCSVParser();
 
-		System.out.println(numberOfExporters(parser,"gold"));
+		System.out.println(numberOfExporters(parser,"sugar"));
 		parser = fr.getCSVParser();
 		
-		bigExporters(parser,"$999,999,999");	
+		bigExporters(parser,"$999,999,999,999");	
 		
 		
 		return;
