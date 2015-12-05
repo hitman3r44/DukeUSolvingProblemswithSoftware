@@ -70,9 +70,14 @@ public class Week2Exercise5 {
 			}
 			if (url.indexOf(".com") > -1 ) {
 				com++;
+			}	
+		
+			if (url.substring(url.length()-5, url.length()-1).contains(".com")) {
+				endsCom++;
 			}
-			
-			// TODO count how many strings end with .com or .com/
+			if (url.substring(url.length()-6, url.length()-1).contains(".com/")) {
+				endsCom++;
+			}
 			
 			for (int i=0; i < url.length(); i++) {
 				if (url.charAt(i) == '.') {
