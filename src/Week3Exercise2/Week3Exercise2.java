@@ -3,8 +3,12 @@
  */
 package Week3Exercise2;
 
+import java.io.File;
+
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+
+import edu.duke.DirectoryResource;
 import edu.duke.FileResource;
 
 /**
@@ -79,6 +83,8 @@ public class Week3Exercise2 {
 	 */
 	public static void testFileWithColdestTemperature() {
 		
+		System.out.println(fileWithColdestTemperature());
+		
 		return;
 	}
 	
@@ -93,9 +99,36 @@ public class Week3Exercise2 {
 	 */
 	public static String fileWithColdestTemperature() {
 	
-		String filename="";
+		DirectoryResource dir = new DirectoryResource();
+		String coldestFile="";
+		CSVRecord coldestRecord = null;
+		double coldest=0;
 		
-		return filename;
+		for (File selectedFile : dir.selectedFiles()) {
+			FileResource file = new FileResource(selectedFile);
+			CSVParser parser = file.getCSVParser();
+			
+			CSVRecord tempColdestRecord = null;
+			double tempColdest=0;
+			
+			if (coldestRecord == null) {
+				coldestRecord = coldestHourInFile(parser);
+				parser = file.getCSVParser();
+				coldest = Double.parseDouble(coldestRecord.get("TemperatureF"));
+				coldestFile = selectedFile.getName();
+			}
+			
+				tempColdestRecord = coldestHourInFile(parser);
+				tempColdest = Double.parseDouble(tempColdestRecord.get("TemperatureF"));
+				
+				if ( tempColdest < coldest ) {
+							coldestRecord=tempColdestRecord;
+							coldest = tempColdest;
+							coldestFile = selectedFile.getName();
+						}
+		}
+	
+		return coldestFile;
 		
 	}
 	
