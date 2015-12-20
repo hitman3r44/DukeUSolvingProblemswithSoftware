@@ -18,14 +18,14 @@ public class Week3Exercise1 {
 		FileResource fr = new FileResource("C:\\Users\\Andy\\DukeUSolvingProblemswithSoftware\\DukeUSolvingProblemswithSoftware\\src\\Week3Exercise1\\exportdata.csv");
 		CSVParser parser = fr.getCSVParser();
 		
-		System.out.println(countryInfo(parser,"Nauru"));
-		parser = fr.getCSVParser();
+		//System.out.println(countryInfo(parser,"cocoa"));
+		//parser = fr.getCSVParser();
 		
-		listExportersTwoProducts(parser, "gold", "diamonds");
-		parser = fr.getCSVParser();
+		//listExportersTwoProducts(parser, "cotton", "flowers");
+		//parser = fr.getCSVParser();
 
-		System.out.println(numberOfExporters(parser,"sugar"));
-		parser = fr.getCSVParser();
+		//System.out.println(numberOfExporters(parser,"cocoa"));
+		//parser = fr.getCSVParser();
 		
 		bigExporters(parser,"$999,999,999,999");	
 		
